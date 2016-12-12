@@ -39,9 +39,15 @@ function Mountain(){
 		if (this.initialised) {
 			this.clear();
 		}
-		this.rg1 = r1;
-		this.rg2 = r2;
-		this.rg3 = r3;
+		if( r1 != null ){
+			this.rg1 = r1;
+		}
+		if( r2 != null ){
+			this.rg2 = r2;
+		}
+		if( r3 != null){
+			this.rg3 = r3;
+		}
 	};
 	this.set_cross=function ( c) {
 		// We can change this during the update
@@ -502,7 +508,7 @@ function Mountain(){
 			if (mix <= 0.0) {
 				// random offset to average of new points
 				for (i = 0; i < this.count; i += 2) {
-					mp[i] = 0.5 * (lp[i] + rp[i]) + (scale * nextGausian());
+					mp[i] = 0.5 * (lp[i] + rp[i]) + (scale * nextGaussian());
 				}
 			} else if (mix >= 1.0) {
 				// random offset to old points

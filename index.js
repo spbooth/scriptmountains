@@ -99,6 +99,39 @@ window.onload = function() {
     	artist.reflec=this.checked;
     }
     add_row("Draw reflections",reflec);
+    
+    var cross = document.createElement("input")
+    cross.setAttribute("type","checkbox");
+    cross.checked=mount.cross;
+    cross.onchange=function(){
+    	mount.cross=this.checked;
+    }
+    add_row("Use cross updates",cross);
+    
+    var rg1 = document.createElement("input")
+    rg1.setAttribute("type","checkbox");
+    rg1.checked=mount.rg1;
+    rg1.onchange=function(){
+    	mount.set_rg(this.checked,null,null);
+    }
+    add_row("Use Regen step 1",rg1);
+    
+    var rg2 = document.createElement("input")
+    rg2.setAttribute("type","checkbox");
+    rg2.checked=mount.rg2;
+    rg2.onchange=function(){
+    	mount.set_rg(null,this.checked,null);
+    }
+    add_row("Use Regen step 2",rg2);
+    
+    var rg3 = document.createElement("input")
+    rg3.setAttribute("type","checkbox");
+    rg3.checked=mount.rg3;
+    rg3.onchange=function(){
+    	mount.set_rg(null,null,this.checked);
+    }
+    add_row("Use Regen step 3",rg3);
+    
     // Call the main loop
     main();
 };
