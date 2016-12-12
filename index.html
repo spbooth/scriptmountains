@@ -4,6 +4,11 @@
 <meta charset="ISO-8859-1">
 <title>ScriptMountains</title>
 </head>
+<style>
+div.hidden{
+  display: none;
+}
+</style>
 <body>
 
 <h1>ScriptMountains</h1>
@@ -18,8 +23,13 @@ fractal landscape generator to JavaScript.<p>
 <script type="text/javascript" src="Mountains.js"></script>
 <script type="text/javascript" src="Artist.js"></script> 
  <canvas id="mountains" width="1024" height="768" style="border:1px solid #000000;">
+ <img src="canvas.png" alt="a fractal mountain"/>
+ <p> Javascript seems to be disabled. If you turned it on this would be an animated image.
+ </p>
 </canvas> 
 <br>
+<div id="controls" class="hidden">
 <button id="toggle" >A stop/start button</button>
+</div>
 </body>
 </html>

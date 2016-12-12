@@ -3,6 +3,10 @@
  */
 window.onload = function() {
 	var running=true;
+	
+	var controls = document.getElementById("controls");
+	controls.style.display="block";
+	
     // Get the canvas and context
     var canvas = document.getElementById("mountains"); 
     var context = canvas.getContext("2d");
