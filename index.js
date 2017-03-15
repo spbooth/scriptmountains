@@ -84,7 +84,7 @@ window.onload = function() {
     	add_row("Run control",button);
 
     	var fdim = document.createElement("input");
-    	fdim.setAttribute("type","number");
+    	fdim.setAttribute("type","range");
     	fdim.setAttribute("min","0.5");
     	fdim.setAttribute("max","1.0");
     	fdim.setAttribute("step","0.01");
@@ -92,6 +92,7 @@ window.onload = function() {
 
     	fdim.onchange=function(){
     		if( fdim.checkValidity()){
+    			fdim.setAttribute("title",fdim.value);
     			mount.set_fdim(fdim.value);
     		}
     	}
