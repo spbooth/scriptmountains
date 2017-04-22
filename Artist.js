@@ -80,11 +80,19 @@ function Artist(image,width, height,  mm) {
 	};
 	this.set_phi=function(a){
 		this.phi = ( a * Math.PI)/180.0;
-		this.initialised=false;
+		this.set_view();
 	};
 	this.set_alpha=function(a){
 		this.alpha = ( a * Math.PI)/180.0;
-		this.initialised=false;
+		this.set_view();
+	};
+	this.set_ambient=function(a){
+		this.ambient=a;
+		this.set_view();
+	};
+	this.set_vfract=function(a){
+		this.vfract=a;
+		this.set_view();
 	};
 	this.set_clut=function() {
 		var band, shade;
@@ -161,17 +169,7 @@ function Artist(image,width, height,  mm) {
 		return res;
 	};
 
-	this.init_artist_variables=function() {
-		var dh, dd;
-
-		if (this.initialised) {
-			return;
-		}
-		this.initialised = true;
-		this.m.init(); // We have to initialize to ensure width etc are set.
-		this.width = this.m.width;
-
-		this.set_clut();
+	this.set_view=function(){
 		this.cos_phi = Math.cos(this.phi);
 		this.sin_phi = Math.sin(this.phi);
 		this.tan_phi = Math.tan(this.phi);
@@ -210,6 +208,23 @@ function Artist(image,width, height,  mm) {
 		/* initialise the light strengths */
 		this.vstrength = this.vfract * this.contrast / (1.0 + this.vfract);
 		this.lstrength = this.contrast / (1.0 + this.vfract);
+	}
+	this.init_artist_variables=function() {
+		var dh, dd;
+
+		if (this.initialised) {
+			return;
+		}
+		this.initialised = true;
+		this.m.init(); // We have to initialize to ensure width etc are set.
+		this.width = this.m.width;
+
+		this.set_clut();
+		this.set_view();
+		
+		
+		
+		/* set initial pos and data */
 		if (this.repeat >= 0) {
 			this.pos = 0;
 		} else {

@@ -128,6 +128,36 @@ window.onload = function() {
     	}
     	add_row("Side light angle",alpha);
     	
+    	var ambient = document.createElement("input");
+    	ambient.setAttribute("type","range");
+    	ambient.setAttribute("min","0.0");
+    	ambient.setAttribute("max","0.8");
+    	ambient.setAttribute("step","0.05");
+    	ambient.setAttribute("value",ambient);
+
+    	ambient.onchange=function(){
+    		if( ambient.checkValidity()){
+    			ambient.setAttribute("title",ambient.value);
+    			artist.set_ambient(ambient.value);
+    		}
+    	}
+    	add_row("Ambient light strength",ambient);
+    	
+    	var vert = document.createElement("input");
+    	vert.setAttribute("type","range");
+    	vert.setAttribute("min","0.0");
+    	vert.setAttribute("max","0.8");
+    	vert.setAttribute("step","0.05");
+    	vert.setAttribute("value",ambient);
+
+    	vert.onchange=function(){
+    		if( vert.checkValidity()){
+    			vert.setAttribute("title",vert.value);
+    			vert.set_vfract(vert.value);
+    		}
+    	}
+    	add_row("Vertical light strength",vert);
+    	
     	var map = document.createElement("input")
     	map.setAttribute("type","checkbox");
     	map.checked=artist.draw_map;
