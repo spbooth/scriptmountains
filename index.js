@@ -98,7 +98,36 @@ window.onload = function() {
     	}
     	add_row("Fractal dimension",fdim);
 
+    	var phi = document.createElement("input");
+    	phi.setAttribute("type","range");
+    	phi.setAttribute("min","0.0");
+    	phi.setAttribute("max","90.0");
+    	phi.setAttribute("step","1.0");
+    	phi.setAttribute("value",(artist.phi*180.0)/Math.PI);
 
+    	phi.onchange=function(){
+    		if( phi.checkValidity()){
+    			phi.setAttribute("title",phi.value);
+    			artist.set_phi(phi.value);
+    		}
+    	}
+    	add_row("Side light declination",phi);
+    	
+    	var alpha = document.createElement("input");
+    	alpha.setAttribute("type","range");
+    	alpha.setAttribute("min","-44.0");
+    	alpha.setAttribute("max","44.0");
+    	alpha.setAttribute("step","1.0");
+    	alpha.setAttribute("value",(artist.alpha*180.0)/Math.PI);
+
+    	alpha.onchange=function(){
+    		if( alpha.checkValidity()){
+    			alpha.setAttribute("title",alpha.value);
+    			artist.set_alpha(alpha.value);
+    		}
+    	}
+    	add_row("Side light angle",alpha);
+    	
     	var map = document.createElement("input")
     	map.setAttribute("type","checkbox");
     	map.checked=artist.draw_map;

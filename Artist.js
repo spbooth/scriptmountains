@@ -78,7 +78,14 @@ function Artist(image,width, height,  mm) {
 			
 		];
 	};
-	
+	this.set_phi=function(a){
+		this.phi = ( a * Math.PI)/180.0;
+		this.initialised=false;
+	};
+	this.set_alpha=function(a){
+		this.alpha = ( a * Math.PI)/180.0;
+		this.initialised=false;
+	};
 	this.set_clut=function() {
 		var band, shade;
 		var red, green, blue, top, bot;
