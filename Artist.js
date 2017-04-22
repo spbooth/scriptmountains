@@ -30,6 +30,7 @@ function Artist(image,width, height,  mm) {
 	
 	this.base = 0;
 	this.shadow=[];
+	this.shadow_register=0.0;
 	this.a_strip = null;
 	this.b_strip = null;
 
@@ -40,13 +41,13 @@ function Artist(image,width, height,  mm) {
 
 	this.width; /* width of terrain strip */
 
-	this.ambient = 0.3; /* level of ambient light */
+	this.ambient = 0.3; /* level of ambient light 0.3*/
 	this.contrast = 1.0; /*
 									 * contrast, increases or decreases effect
 									 * of cosine rule
 									 */
 	this.contour = 0.3;
-	this.vfract = 0.6; /*
+	this.vfract = 0.6; /* 0.6
 								 * relative strength of vertical light relative
 								 * to the main light source
 								 */
@@ -87,11 +88,13 @@ function Artist(image,width, height,  mm) {
 		this.set_view();
 	};
 	this.set_ambient=function(a){
-		this.ambient=a;
+		this.ambient=+a;
+		this.set_clut();
 		this.set_view();
 	};
 	this.set_vfract=function(a){
-		this.vfract=a;
+		this.vfract=+a;
+		this.set_clut();
 		this.set_view();
 	};
 	this.set_clut=function() {
@@ -198,8 +201,8 @@ function Artist(image,width, height,  mm) {
 		 * mapping the bottom of the fractal to the bottom of the screen. Try to
 		 * get points in the middle of the fractal to be 1 pixel high
 		 */
-		dh = this.viewheight;
-		dd = (this.width / 2.0) - this.viewpos;
+		var dh = this.viewheight;
+		var dd = (this.width / 2.0) - this.viewpos;
 		this.focal = Math.sqrt((dd * dd) + (dh * dh));
 		this.tan_vangle = ((this.viewheight - this.sealevel) / -this.viewpos);
 		this.vangle = Math.atan(this.tan_vangle);
@@ -210,8 +213,7 @@ function Artist(image,width, height,  mm) {
 		this.lstrength = this.contrast / (1.0 + this.vfract);
 	}
 	this.init_artist_variables=function() {
-		var dh, dd;
-
+		
 		if (this.initialised) {
 			return;
 		}

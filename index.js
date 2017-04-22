@@ -133,7 +133,7 @@ window.onload = function() {
     	ambient.setAttribute("min","0.0");
     	ambient.setAttribute("max","0.8");
     	ambient.setAttribute("step","0.05");
-    	ambient.setAttribute("value",ambient);
+    	ambient.setAttribute("value",artist.ambient);
 
     	ambient.onchange=function(){
     		if( ambient.checkValidity()){
@@ -148,12 +148,12 @@ window.onload = function() {
     	vert.setAttribute("min","0.0");
     	vert.setAttribute("max","0.8");
     	vert.setAttribute("step","0.05");
-    	vert.setAttribute("value",ambient);
+    	vert.setAttribute("value",artist.vfract);
 
     	vert.onchange=function(){
     		if( vert.checkValidity()){
     			vert.setAttribute("title",vert.value);
-    			vert.set_vfract(vert.value);
+    			artist.set_vfract(vert.value);
     		}
     	}
     	add_row("Vertical light strength",vert);
