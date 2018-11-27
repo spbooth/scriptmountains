@@ -105,14 +105,19 @@ function Artist(image,width, height,  mm) {
 		var gb = [ 0.500, 0.600, 1.000 ];
 		var bb = [ 0.333, 0.000, 1.000 ];
 
-		
+		var skyfrac = this.vfract / 0.6;
+		if( skyfrac > 1.0){
+			skyfrac=1.0;
+		}
 		
 		this.clut[BLACK] = [0,0,0];
 		this.clut[WHITE] = [255,255,255];
-		this.clut[SKY] = this.rgb(0.404, 0.588, 1.000);
-		this.clut[SEA_LIT] = this.rgb(0.000, 0.500, 0.700);
-		this.clut[SEA_UNLIT] = this.rgb(0.000, ((this.ambient + (this.vfract / (1.0 + this.vfract))) * 0.500),
-				((this.ambient + (this.vfract / (1.0 + this.vfract))) * 0.700));
+		this.clut[SKY] = this.rgb(0.404 * skyfrac, 0.588 * skyfrac, 1.000 * skyfrac);
+		var sea_green = 0.500*skyfrac;
+		var sea_blue  = 0.700*skyfrac;
+		this.clut[SEA_LIT] = this.rgb(0.000, sea_green, sea_blue);
+		this.clut[SEA_UNLIT] = this.rgb(0.000, ((this.ambient + (this.vfract / (1.0 + this.vfract))) * sea_green),
+				((this.ambient + (this.vfract / (1.0 + this.vfract))) * sea_blue));
 
 		/* max_col can over-rule band_size */
 		while ((BAND_BASE + this.band_size * N_BANDS) > this.n_col) {
